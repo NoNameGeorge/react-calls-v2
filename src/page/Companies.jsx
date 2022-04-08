@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-
 import useDebounce from './../hooks/use-debounce';
 
 import Filters from "./../components/Filters";
@@ -8,16 +7,25 @@ import Pagination from "./../components/Pagination";
 import { useNavigate } from "react-router";
 
 const Companies = () => {
+    const sortTypes = [{
+        name: 'По умолчанию',
+        type: null
+    }, {
+        name: 'По алфавиту (с начала)',
+        type: '&sorts=name'
+    }, {
+        name: 'По алфавиту (с конца)',
+        type: '&sorts=-name'
+    }]
+
     const navigate = useNavigate()
     const pageSize = 10
 
     const [companies, setCompanies] = React.useState([])
     const [companiesPage, setCompaniesPage] = React.useState(1)
     const [isSearching, setIsSearching] = React.useState(false)
-
     const [searchValue, setSearchValue] = React.useState('')
     const [sortType, setSortType] = React.useState(null)
-
     const [hasNextPage, setHasNextPage] = React.useState(false)
 
     const debouncedSearch = useDebounce(searchValue, 500)
@@ -27,7 +35,7 @@ const Companies = () => {
             .get(`http://test.runcall.ru/Api/GetCallCampaigns?Page=${companiesPage}&PageSize=${pageSize}${params}`)
             .then(({ data }) => {
                 setCompanies(data)
-                // Проверка на наличие следующей страницы
+
                 axios
                     .get(`http://test.runcall.ru/Api/GetCallCampaigns?Page=${companiesPage + 1}&PageSize=${pageSize}${params}`)
                     .then(({ data }) => {
@@ -48,7 +56,7 @@ const Companies = () => {
 
         params += searchValue ? `&filters=name@=${searchValue}` : ''
         params += sortType ? sortType : ''
-
+        
         setCompaniesFromAPI(params)
     }, [companiesPage, debouncedSearch, sortType])
 
@@ -71,11 +79,11 @@ const Companies = () => {
                 onChange={(text) => pageResetOnTextHandler(text)}
                 sortHandler={(type) => pageResetOnSortHandler(type)}
                 sortType={sortType}
+                sortTypes={sortTypes}
             />
 
             {isSearching && <div className='download'>Загрузка...</div>}
             {(!isSearching && !companies.length) && <div className='not-found'>Нет результатов</div>}
-
             {(!isSearching && companies.length) &&
                 <div className="company">
                     {companies.map(company => {

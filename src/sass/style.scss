@@ -8,8 +8,8 @@
 }
 
 * {
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .main-wrapper {
@@ -83,7 +83,8 @@
     margin-top: 5px;
 }
 
-.company {
+.company,
+.calls {
     width: 100%;
     // display: grid;
     // grid-template-columns: repeat(2, 1fr);
@@ -133,6 +134,28 @@
     }
 }
 
+.calls__item {
+    display: grid;
+    grid-template-columns: minmax(100px, 150px) minmax(70px, 100px) auto minmax(70px, 122px) minmax(70px, 100px);
+    grid-gap: 20px;
+    .calls__number,
+    .calls__date {
+        font-weight: 500;
+    }
+    .calls__type,
+    .calls__time,
+    .calls__link,
+    .calls__date {
+        font-size: rem(14px);
+    }
+    .calls__date,
+    .calls__link {
+        text-align: right;
+    }
+    .calls__comment {
+        grid-column: 1/6;
+    }
+}
 
 .pagination {
     display: flex;
