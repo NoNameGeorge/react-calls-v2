@@ -1,0 +1,12 @@
+// Контейнер
+$container: 1100px;
+$containerPadding: 25px;
+
+// Размер базового шрфита
+$fontSize: 16px;
+
+$bgColor: #fff;
+
+@function rem($size: $fontSize) {
+    @return ($size / $fontSize * 1rem);
+}

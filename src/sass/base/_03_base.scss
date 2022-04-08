@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Montserrat;
+    src: local("Montserrat-Light"), url(./../fonts/Montserrat-Light.woff2) format("woff2"),
+        url(./../fonts/Montserrat-Light.woff) format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: Montserrat;
+    src: local("Montserrat-Regular"), url(./../fonts/Montserrat-Regular.woff2) format("woff2"),
+        url(./../fonts/Montserrat-Regular.woff) format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: Montserrat;
+    src: local("Montserrat-Medium"), url(./../fonts/Montserrat-Medium.woff2) format("woff2"),
+        url(./../fonts/Montserrat-Medium.woff) format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: Montserrat;
+    src: local("Montserrat-SemiBold"), url(./../fonts/Montserrat-SemiBold.woff2) format("woff2"),
+        url(./../fonts/Montserrat-SemiBold.woff) format("woff");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #000;
+    line-height: 1.2;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: $fontSize;
+    @media (max-width: 992px) {
+        font-size: calc(($fontSize - 2px) + 2 * ((100vw - 768px) / (992 - 768)));
+    }
+    @media (max-width: 768px) {
+        font-size: ($fontSize - 2px);
+    }
+    @media (max-width: 480px) {
+        font-size: calc(($fontSize - 5px) + 2 * ((100vw - 320px) / (480 - 320)));
+    }
+    @media (max-width: 320px) {
+        font-size: ($fontSize - 5px);
+    }
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    background: $bgColor;
+    overflow-x: hidden;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.btn {
+    @include no-btn();
+}
+
+.container {
+    @include container();
+}
