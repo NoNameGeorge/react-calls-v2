@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Filters = ({ value, onChange, sortHandler, sortType }) => {
+const Filters = ({ text, value, onChange, sortHandler, sortType }) => {
     const sortTpes = [{
         name: 'По умолчанию',
         type: null
@@ -17,6 +17,7 @@ const Filters = ({ value, onChange, sortHandler, sortType }) => {
             <input
                 type="text"
                 className="filters__search"
+                placeholder={text}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
             />

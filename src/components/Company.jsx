@@ -16,31 +16,7 @@ const Company = ({ id, name }) => {
 
     const [hasNextPage, setHasNextPage] = React.useState(false)
 
-    React.useEffect(() => {
-        if (active) {
-            setIsSearching(prev => !prev)
 
-            let params = ``
-
-            axios
-                .get(`http://test.runcall.ru/Api/GetCallResults?Page=${callsPage}&PageSize=${pageSize}${params}`)
-                .then(response => {
-                    setCalls(response.data)
-                    // Проверка на наличие следующей страницы
-                    axios
-                        .get(`http://test.runcall.ru/Api/GetCallResults?Page=${callsPage + 1}&PageSize=${pageSize}${params}`)
-                        .then(({ data }) => {
-                            setHasNextPage(data.length !== 0)
-                        })
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-                .finally(() => {
-                    setIsSearching(prev => !prev)
-                })
-        }
-    }, [callsPage, active])
 
     const pageHandler = (newPage = 1) => {
         setCallsPage(newPage)
